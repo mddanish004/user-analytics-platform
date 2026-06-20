@@ -42,9 +42,8 @@ A full-stack web analytics application built as a technical selection task submi
 13. [Getting Started (Local Development)](#getting-started-local-development)
 14. [Deployment](#deployment)
 15. [Design Decisions](#design-decisions)
-16. [Known Limitations](#known-limitations)
-17. [Possible Extensions](#possible-extensions)
-18. [Author](#author)
+16. [Assumptions or Trade-offs](#assumptions-or-trade-offs)
+
 
 ---
 
@@ -578,38 +577,33 @@ The tracker and demo page are served from the same origin as the API. This simpl
 
 ---
 
-## Known Limitations
+## Assumptions or Trade-offs
 
-These are intentional simplifications for the scope of a selection task:
+This section documents the assumptions made while scoping the task and the trade-offs accepted to deliver a working end-to-end system within a selection-task timeframe. These were deliberate choices, not oversights.
 
-- **No authentication** — the dashboard and API are open. A production system would require login and API key validation for event ingestion.
-- **No event batching** — each click sends an individual HTTP request. High-traffic sites would batch events and flush periodically.
-- **Session scope is browser-local** — clearing `localStorage` or switching browsers creates a new session. There is no cross-device user identification.
-- **Single-page heatmap** — the heatmap renders one URL at a time. Multi-page journey visualisation is limited to the session timeline view.
-- **No scroll or hover tracking** — only page views and clicks are captured.
-- **No data retention policy** — events are stored indefinitely with no TTL or archival.
-- **Render free tier cold starts** — the hosted backend sleeps after inactivity; the first request after sleep can take 30–60 seconds.
+### Assumptions
 
----
+| Assumption | Rationale |
+|------------|-----------|
+| A single tracked website is sufficient | The demo page and dashboard are wired to one backend. There is no multi-tenant or per-site configuration. |
+| Reviewers will test via the provided demo page | The heatmap iframe loads pages from the backend origin (`/demo/demo.html`). Tracking on arbitrary third-party sites was out of scope. |
+| Session = browser tab persistence | A session is identified by a UUID in `localStorage`, not by authenticated user identity or device fingerprinting. |
+| Page views and clicks are the required event types | Scroll depth, form interactions, and custom events were not part of the core requirement. |
+| MongoDB Atlas is available for persistence | Cloud-hosted MongoDB removes local infrastructure setup for reviewers and matches a typical small-project deployment. |
+| Free-tier hosting is acceptable for the demo | Render and Vercel free tiers were chosen to keep the project deployable at no cost, accepting cold-start latency on the API. |
 
-## Possible Extensions
+### Trade-offs
 
-If this project were taken further, these would be natural next steps:
-
-- Add API key authentication for the tracker endpoint
-- Implement event batching with a `sendBeacon` fallback for page unload
-- Track scroll depth, form submissions, and rage clicks
-- Add date-range filtering on the sessions and heatmap views
-- Introduce a proper `sessions` collection with first-seen and last-seen timestamps
-- Add unit and integration tests for the API and tracker
-- Support multiple tracked websites via a `site_id` field
-
----
-
-## Author
-
-Built as a technical selection task submission.
-
-- LinkedIn: [linkedin.com/in/mddanish004](https://www.linkedin.com/in/mddanish004/)
-- Email: [m.danishansari400@gmail.com](mailto:m.danishansari400@gmail.com)
+| Area | Choice made | Alternative considered | Cost of this choice |
+|------|-------------|------------------------|---------------------|
+| **Tracker delivery** | Vanilla JS, no build step | Bundled/minified module with a build pipeline | Easier to embed and review, but no tree-shaking, versioning, or source maps |
+| **Event ingestion** | One HTTP request per event | Batched queue flushed on interval or page unload | Simple to implement and debug; higher request volume under heavy clicking |
+| **Data model** | Single `events` collection; sessions derived at query time | Separate `sessions` table updated on each event | Fewer write paths and no sync bugs; session queries require aggregation on every list load |
+| **URL identity** | Store pathname only (`/demo/demo.html`) | Full URL with hostname, query string, and hash | Consistent across local and deployed environments; loses query-param and subdomain distinction |
+| **Heatmap rendering** | iframe preview + coordinate scaling | Screenshot-based or DOM replay (e.g. rrweb) | Lightweight and faithful to live layout; breaks if the tracked page changes after clicks were recorded |
+| **Security** | Open API and dashboard | API keys for ingestion, auth for dashboard | Zero friction for reviewers; unsuitable for production without additional hardening |
+| **CORS** | Allow all origins | Origin allowlist per registered site | Works immediately with Vercel dashboard and any demo origin; no protection against unsolicited event spam |
+| **Deployment split** | API on Render, dashboard on Vercel | Monorepo served from a single host | Mirrors a common production split; adds cross-origin configuration and Render cold-start behaviour |
+| **Error handling in tracker** | Log to console, do not retry | Retry queue with exponential backoff | Page behaviour is never blocked; some events may be lost on network failure |
+| **Click coordinates** | `pageX` / `pageY` with viewport width | Normalised 0–1 coordinates or element selectors | Works across rescaled heatmap previews; less precise if page layout shifts after the click |
 
