@@ -2,7 +2,7 @@ import Event from "../models/Event.js";
 
 export const createEvent = async (req, res) => {
   try {
-    const { session_id, type, url, timestamp, x, y } = req.body;
+    const { session_id, type, url, timestamp, x, y, viewport } = req.body;
 
     if (!session_id || !type || !url || !timestamp) {
       return res.status(400).json({
@@ -18,6 +18,7 @@ export const createEvent = async (req, res) => {
       timestamp,
       x,
       y,
+      viewport,
     });
 
     return res.status(201).json({

@@ -30,6 +30,10 @@ const eventSchema = new mongoose.Schema(
     y: {
       type: Number,
     },
+
+    viewport: {
+      type: Number,
+    },
   },
   {
     timestamps: true,

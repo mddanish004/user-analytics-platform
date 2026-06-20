@@ -1,4 +1,9 @@
-const BACKEND_URL = "http://localhost:5000/api/events";
+const script = document.currentScript;
+const BACKEND_URL =
+  script?.getAttribute("data-api") ||
+  (script?.src
+    ? new URL("../api/events", script.src).href
+    : "http://localhost:5000/api/events");
 
 const SESSION_KEY = "analytics_session_id";
 
@@ -53,9 +58,11 @@ function trackClicks() {
 
       timestamp: new Date().toISOString(),
 
-      x: event.clientX,
+      x: event.pageX,
 
-      y: event.clientY,
+      y: event.pageY,
+
+      viewport: document.documentElement.clientWidth,
     });
   });
 }

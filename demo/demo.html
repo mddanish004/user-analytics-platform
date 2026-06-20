@@ -2,20 +2,447 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Analytics Demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Target - Expect More. Pay Less.</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style type="text/tailwindcss">
+            @layer base {
+                body {
+                    font-family: "Roboto", Arial, sans-serif;
+                }
+                a {
+                    text-decoration: none;
+                    color: inherit;
+                }
+                button {
+                    font-family: "Roboto", Arial, sans-serif;
+                }
+            }
+        </style>
     </head>
-    <body>
-        <h1>Analytics Demo Page</h1>
+    <body class="bg-[#f5f5f5] text-[#1d1d1d]">
+        <div class="flex justify-end items-stretch bg-[#cc0000]">
+            <a
+                href="#"
+                class="text-white text-xs px-4 py-2 border-l border-white/25 flex items-center hover:bg-white/10"
+                >Find a Store</a
+            >
+            <a
+                href="#"
+                class="text-white text-xs px-4 py-2 border-l border-white/25 flex items-center hover:bg-white/10"
+                >Weekly Ad</a
+            >
+            <a
+                href="#"
+                class="text-white text-xs px-4 py-2 border-l border-white/25 border-r border-r-white/25 flex items-center hover:bg-white/10"
+                >RedCard</a
+            >
+        </div>
 
-        <button>Login</button>
+        <header class="bg-white flex items-center gap-6 px-6 py-3 shadow-md">
+            <a href="#" class="flex items-center gap-2.5 shrink-0">
+                <svg
+                    class="w-[48px] h-[48px]"
+                    viewBox="0 0 100 100"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <circle cx="50" cy="50" r="50" fill="#cc0000" />
+                    <circle cx="50" cy="50" r="32" fill="white" />
+                    <circle cx="50" cy="50" r="15" fill="#cc0000" />
+                </svg>
+                <span class="text-2xl font-black text-[#cc0000] tracking-tight"
+                    >target</span
+                >
+            </a>
+            <form
+                class="flex-1 max-w-[600px] flex border-2 border-[#3d3d3d] rounded-[24px] overflow-hidden"
+                onsubmit="return false;"
+            >
+                <input
+                    type="text"
+                    placeholder="What can we help you find?"
+                    class="flex-1 px-5 py-2.5 text-sm outline-none text-[#1d1d1d] placeholder:text-[#767676]"
+                />
+                <button
+                    type="submit"
+                    class="bg-[#cc0000] border-none px-5 text-white flex items-center justify-center hover:bg-[#990000] transition-colors cursor-pointer"
+                >
+                    <svg
+                        class="w-[18px] h-[18px]"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </button>
+            </form>
+            <div class="flex items-center gap-2 ml-auto">
+                <button
+                    class="flex flex-col items-center gap-1 text-[#1d1d1d] text-[11px] font-medium px-3 py-1.5 border-none bg-transparent rounded-md cursor-pointer hover:text-[#cc0000] hover:bg-red-50 transition-colors"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    Sign In
+                </button>
+                <button
+                    class="flex flex-col items-center gap-1 text-[#1d1d1d] text-[11px] font-medium px-3 py-1.5 border-none bg-transparent rounded-md cursor-pointer hover:text-[#cc0000] hover:bg-red-50 transition-colors"
+                >
+                    <div class="relative">
+                        <svg
+                            class="w-6 h-6"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <circle cx="9" cy="21" r="1" />
+                            <circle cx="20" cy="21" r="1" />
+                            <path
+                                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                            />
+                        </svg>
+                        <span
+                            class="absolute -top-1.5 -right-1.5 bg-[#cc0000] text-white rounded-full w-4 h-4 text-[9px] font-bold flex items-center justify-center"
+                            >0</span
+                        >
+                    </div>
+                    Cart
+                </button>
+            </div>
+        </header>
 
-        <button>Register</button>
+        <nav class="bg-white border-b border-gray-200">
+            <div class="flex items-stretch px-6 max-w-5xl mx-auto">
+                <a
+                    href="#"
+                    class="text-[#1d1d1d] text-[13px] font-medium px-3 py-3 whitespace-nowrap border-b-2 border-b-transparent hover:text-[#cc0000] hover:border-b-[#cc0000] transition-colors"
+                    >Women</a
+                >
+                <a
+                    href="#"
+                    class="text-[#1d1d1d] text-[13px] font-medium px-3 py-3 whitespace-nowrap border-b-2 border-b-transparent hover:text-[#cc0000] hover:border-b-[#cc0000] transition-colors"
+                    >Men</a
+                >
+                <a
+                    href="#"
+                    class="text-[#1d1d1d] text-[13px] font-medium px-3 py-3 whitespace-nowrap border-b-2 border-b-transparent hover:text-[#cc0000] hover:border-b-[#cc0000] transition-colors"
+                    >Kids</a
+                >
+                <a
+                    href="#"
+                    class="text-[#1d1d1d] text-[13px] font-medium px-3 py-3 whitespace-nowrap border-b-2 border-b-transparent hover:text-[#cc0000] hover:border-b-[#cc0000] transition-colors"
+                    >Home</a
+                >
+                <a
+                    href="#"
+                    class="text-[#1d1d1d] text-[13px] font-medium px-3 py-3 whitespace-nowrap border-b-2 border-b-transparent hover:text-[#cc0000] hover:border-b-[#cc0000] transition-colors"
+                    >Electronics</a
+                >
+                <a
+                    href="#"
+                    class="text-[#1d1d1d] text-[13px] font-medium px-3 py-3 whitespace-nowrap border-b-2 border-b-transparent hover:text-[#cc0000] hover:border-b-[#cc0000] transition-colors"
+                    >Beauty</a
+                >
+                <a
+                    href="#"
+                    class="text-[#1d1d1d] text-[13px] font-medium px-3 py-3 whitespace-nowrap border-b-2 border-b-transparent hover:text-[#cc0000] hover:border-b-[#cc0000] transition-colors"
+                    >Grocery</a
+                >
+                <a
+                    href="#"
+                    class="text-[#1d1d1d] text-[13px] font-medium px-3 py-3 whitespace-nowrap border-b-2 border-b-transparent hover:text-[#cc0000] hover:border-b-[#cc0000] transition-colors"
+                    >Toys</a
+                >
+            </div>
+        </nav>
 
-        <button>Buy Now</button>
+        <section
+            class="bg-gradient-to-br from-[#cc0000] to-[#7f0000] text-white px-12 py-16"
+        >
+            <div class="max-w-5xl mx-auto">
+                <p
+                    class="text-xs font-bold uppercase tracking-[3px] opacity-80 mb-4"
+                >
+                    Limited Time Deals
+                </p>
+                <h1 class="text-4xl font-black leading-tight mb-4">
+                    Save Big on<br />Top Brands
+                </h1>
+                <p class="text-base font-light opacity-90 mb-8">
+                    Free shipping on orders over $35. Same-day delivery
+                    available.
+                </p>
+                <div class="flex gap-4">
+                    <a
+                        href="#products"
+                        class="bg-white text-[#cc0000] font-bold text-sm px-8 py-3 rounded-full hover:bg-gray-100 transition-colors inline-block cursor-pointer"
+                        >Shop Now</a
+                    >
+                    <a
+                        href="#"
+                        class="border-2 border-white text-white font-bold text-sm px-8 py-3 rounded-full hover:bg-white/10 transition-colors inline-block cursor-pointer"
+                        >View Deals</a
+                    >
+                </div>
+            </div>
+        </section>
 
-        <a href="#">Products</a>
+        <section id="products" class="max-w-5xl mx-auto px-6 py-10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Today's Top Deals</h2>
+                <a
+                    href="#"
+                    class="text-[#cc0000] text-sm font-semibold border-b border-b-transparent hover:border-b-[#cc0000] transition-colors"
+                    >See all deals</a
+                >
+            </div>
+            <div class="grid grid-cols-4 gap-4">
+                <div
+                    class="bg-white rounded-lg overflow-hidden border border-[#e8e8e8] cursor-pointer hover:shadow-lg transition-shadow"
+                >
+                    <div
+                        class="relative bg-[#f8f8f8] aspect-square overflow-hidden"
+                    >
+                        <img
+                            src="https://placehold.co/300x300/f0f0f0/333333?text=AirPods+Pro"
+                            class="w-full h-full object-cover block"
+                            alt="AirPods Pro"
+                        />
+                        <span
+                            class="absolute top-2 left-2 bg-[#cc0000] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm uppercase"
+                            >24% off</span
+                        >
+                    </div>
+                    <div class="p-3">
+                        <p
+                            class="text-[11px] text-[#767676] uppercase tracking-wide mb-1"
+                        >
+                            Apple
+                        </p>
+                        <p
+                            class="text-[13px] text-[#1d1d1d] leading-snug mb-2 line-clamp-2 min-h-9"
+                        >
+                            AirPods Pro (2nd Generation) with MagSafe Case
+                        </p>
+                        <div class="flex items-center gap-1 mb-2">
+                            <span class="text-[#cc0000] text-xs"
+                                >&#9733;&#9733;&#9733;&#9733;&#9733;</span
+                            >
+                            <span class="text-[11px] text-[#767676]"
+                                >(3,847)</span
+                            >
+                        </div>
+                        <div class="flex items-baseline gap-2 mb-2.5">
+                            <span class="text-base font-bold text-[#cc0000]"
+                                >$189.99</span
+                            >
+                            <span class="text-xs text-[#767676] line-through"
+                                >$249.99</span
+                            >
+                        </div>
+                        <button
+                            class="w-full bg-[#cc0000] text-white border-none py-2 rounded-full text-[13px] font-bold cursor-pointer hover:bg-[#990000] transition-colors"
+                        >
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
 
-        <div style="margin-top: 40px">Click anywhere on this page.</div>
+                <div
+                    class="bg-white rounded-lg overflow-hidden border border-[#e8e8e8] cursor-pointer hover:shadow-lg transition-shadow"
+                >
+                    <div
+                        class="relative bg-[#f8f8f8] aspect-square overflow-hidden"
+                    >
+                        <img
+                            src="https://placehold.co/300x300/f0f0f0/333333?text=Instant+Pot"
+                            class="w-full h-full object-cover block"
+                            alt="Instant Pot"
+                        />
+                        <span
+                            class="absolute top-2 left-2 bg-[#cc0000] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm uppercase"
+                            >20% off</span
+                        >
+                    </div>
+                    <div class="p-3">
+                        <p
+                            class="text-[11px] text-[#767676] uppercase tracking-wide mb-1"
+                        >
+                            Instant Pot
+                        </p>
+                        <p
+                            class="text-[13px] text-[#1d1d1d] leading-snug mb-2 line-clamp-2 min-h-9"
+                        >
+                            Duo 7-in-1 Electric Pressure Cooker, 6 Quart
+                        </p>
+                        <div class="flex items-center gap-1 mb-2">
+                            <span class="text-[#cc0000] text-xs"
+                                >&#9733;&#9733;&#9733;&#9733;&#9733;</span
+                            >
+                            <span class="text-[11px] text-[#767676]"
+                                >(12,541)</span
+                            >
+                        </div>
+                        <div class="flex items-baseline gap-2 mb-2.5">
+                            <span class="text-base font-bold text-[#cc0000]"
+                                >$79.95</span
+                            >
+                            <span class="text-xs text-[#767676] line-through"
+                                >$99.95</span
+                            >
+                        </div>
+                        <button
+                            class="w-full bg-[#cc0000] text-white border-none py-2 rounded-full text-[13px] font-bold cursor-pointer hover:bg-[#990000] transition-colors"
+                        >
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-lg overflow-hidden border border-[#e8e8e8] cursor-pointer hover:shadow-lg transition-shadow"
+                >
+                    <div
+                        class="relative bg-[#f8f8f8] aspect-square overflow-hidden"
+                    >
+                        <img
+                            src="https://placehold.co/300x300/f0f0f0/333333?text=Ninja+Air+Fryer"
+                            class="w-full h-full object-cover block"
+                            alt="Ninja Air Fryer"
+                        />
+                        <span
+                            class="absolute top-2 left-2 bg-[#cc0000] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm uppercase"
+                            >25% off</span
+                        >
+                    </div>
+                    <div class="p-3">
+                        <p
+                            class="text-[11px] text-[#767676] uppercase tracking-wide mb-1"
+                        >
+                            Ninja
+                        </p>
+                        <p
+                            class="text-[13px] text-[#1d1d1d] leading-snug mb-2 line-clamp-2 min-h-9"
+                        >
+                            Air Fryer XL 5.5 Qt. with Max Crisp Technology
+                        </p>
+                        <div class="flex items-center gap-1 mb-2">
+                            <span class="text-[#cc0000] text-xs"
+                                >&#9733;&#9733;&#9733;&#9733;&#9734;</span
+                            >
+                            <span class="text-[11px] text-[#767676]"
+                                >(7,203)</span
+                            >
+                        </div>
+                        <div class="flex items-baseline gap-2 mb-2.5">
+                            <span class="text-base font-bold text-[#cc0000]"
+                                >$89.99</span
+                            >
+                            <span class="text-xs text-[#767676] line-through"
+                                >$119.99</span
+                            >
+                        </div>
+                        <button
+                            class="w-full bg-[#cc0000] text-white border-none py-2 rounded-full text-[13px] font-bold cursor-pointer hover:bg-[#990000] transition-colors"
+                        >
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-lg overflow-hidden border border-[#e8e8e8] cursor-pointer hover:shadow-lg transition-shadow"
+                >
+                    <div
+                        class="relative bg-[#f8f8f8] aspect-square overflow-hidden"
+                    >
+                        <img
+                            src="https://placehold.co/300x300/f0f0f0/333333?text=Sony+WH-1000XM5"
+                            class="w-full h-full object-cover block"
+                            alt="Sony Headphones"
+                        />
+                        <span
+                            class="absolute top-2 left-2 bg-[#cc0000] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm uppercase"
+                            >20% off</span
+                        >
+                    </div>
+                    <div class="p-3">
+                        <p
+                            class="text-[11px] text-[#767676] uppercase tracking-wide mb-1"
+                        >
+                            Sony
+                        </p>
+                        <p
+                            class="text-[13px] text-[#1d1d1d] leading-snug mb-2 line-clamp-2 min-h-9"
+                        >
+                            WH-1000XM5 Wireless Noise Canceling Headphones
+                        </p>
+                        <div class="flex items-center gap-1 mb-2">
+                            <span class="text-[#cc0000] text-xs"
+                                >&#9733;&#9733;&#9733;&#9733;&#9733;</span
+                            >
+                            <span class="text-[11px] text-[#767676]"
+                                >(2,918)</span
+                            >
+                        </div>
+                        <div class="flex items-baseline gap-2 mb-2.5">
+                            <span class="text-base font-bold text-[#cc0000]"
+                                >$279.99</span
+                            >
+                            <span class="text-xs text-[#767676] line-through"
+                                >$349.99</span
+                            >
+                        </div>
+                        <button
+                            class="w-full bg-[#cc0000] text-white border-none py-2 rounded-full text-[13px] font-bold cursor-pointer hover:bg-[#990000] transition-colors"
+                        >
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-[#3d3d3d] text-[#bbbbbb] text-sm text-center py-4">
+            &copy; 2024 Target Brands, Inc. All rights reserved.
+        </footer>
+
+        <script>
+            window.addEventListener("load", function () {
+                setTimeout(function () {
+                    window.parent.postMessage(
+                        {
+                            type: "heatmap-page-height",
+                            height: document.documentElement.scrollHeight,
+                        },
+                        "*",
+                    );
+                }, 800);
+            });
+        </script>
 
         <script src="../tracker/tracker.js"></script>
     </body>

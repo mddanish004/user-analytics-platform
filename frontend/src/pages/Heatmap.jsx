@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getHeatmap, getUrls } from "../services/api";
+import { getHeatmap, getUrls, BACKEND_ORIGIN } from "../services/api";
 import HeatmapCanvas from "../components/HeatmapCanvas";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
@@ -68,7 +68,14 @@ function Heatmap() {
           ))}
         </select>
       </div>
-      {loading ? <Loader /> : <HeatmapCanvas clicks={clicks} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <HeatmapCanvas
+          clicks={clicks}
+          pageUrl={selectedUrl ? `${BACKEND_ORIGIN}${selectedUrl}` : ""}
+        />
+      )}
     </div>
   );
 }

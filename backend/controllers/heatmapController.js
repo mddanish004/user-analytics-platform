@@ -12,7 +12,7 @@ export const getHeatmap = async (req, res) => {
     }
 
     const clicks = await Event.find({ url, type: "click" }).select(
-      "x y timestamp -_id",
+      "x y viewport timestamp -_id",
     );
 
     res.status(200).json({ success: true, data: clicks });
